@@ -11,7 +11,6 @@ function SearchServiceFormulario (props){
 
     const SearchServiceSubmit = e => {
         e.preventDefault();
-        console.log('SearchServiceSubmit');
         props.onSubmit(keySearch);
     };
 
