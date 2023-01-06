@@ -8,5 +8,8 @@ Los siguientes proyectos estan basados en este video, httpswww.youtube.comwatchv
 - testimonios-componente-clase
 - testimonios-componente-funcional
 
-El proyecto de rest Api se baso en este video httpswww.youtube.comwatchv=fgQHjMotDPk&t=858s se busco una api free online para hacer las pruebas
+El proyecto de rest Api se baso en este video httpswww.youtube.comwatchv=fgQHjMotDPk se busco una api free online para hacer las pruebas
 - rest-api-example
+
+El proyecto reactTestingLibrary se baso en https://www.youtube.com/watch?v=giywdKF4SXY se utilizo la api free y se realizaraon varios test utilizando la libreria React Testing library, para correr los test se debe ejecutar por linea de comandas npm test.
+- reactTestingLibrary
