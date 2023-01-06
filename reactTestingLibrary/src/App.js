@@ -12,18 +12,14 @@ function App() {
   const [responseSearch, setResponseSearch] = useState('');
 
 
-  const getResponseServiceAsync = async (keySearch) => {
+  const SearchServiceSubmit = async keySearch => {
+    console.log('SearchServiceSubmit: '+keySearch);
     setResponseSearch('');
     setLoading(true);
     const responDictionaryseService = await getWordMeaning(keySearch);
     setResponseSearch(responDictionaryseService);
     setLoading(false);
    }
-
-  const SearchServiceSubmit = keySearch => {
-      console.log('SearchServiceSubmit: '+keySearch);
-      getResponseServiceAsync(keySearch);
-  };
 
 
   return (
