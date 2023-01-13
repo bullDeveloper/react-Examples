@@ -1,0 +1,39 @@
+.logout-container {
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -100px;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    background-color: #f8f9fd;
+}
+
+.logout-title {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.logout-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.logout-button-submit {
+    margin: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    background: #01d28e;
+    border: 1px solid #01d28e;
+    color: #fff;
+    padding: 10px 20px;
+}
+  
+.logout-button-submit:hover {
+   background: #6cf0c2;
+}
