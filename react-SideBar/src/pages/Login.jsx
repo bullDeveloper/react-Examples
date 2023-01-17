@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import "../styleSheets/Login.css";
+import "./Login.css";
 import { useNavigate } from 'react-router-dom';
+import { useAuthenticationContext } from "../components/authentication/AuthenticationProvider";
 
 export default function Login() {
 
@@ -11,6 +12,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const {loginHandler} = useAuthenticationContext();
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -21,7 +23,7 @@ export default function Login() {
     console.log('Conect to service Login, email:' + email + ' | pass:' + password);
     if (emailValidos.includes(email) && passwordValido.includes(password)) {
       console.log('Bingo');
-
+      loginHandler();
       navigate('/success');
     }
   }

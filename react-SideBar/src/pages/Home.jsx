@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar'
-import '../styleSheets/Home.css'
+import Sidebar from '../components/common/Sidebar'
+import './Home.css'
 
 const Home = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar'
-import '../styleSheets/Alter-User.css'
+import Sidebar from '../components/common/Sidebar'
+import './Alter-User.css'
 
 export const AlterUser = () => {
   return (

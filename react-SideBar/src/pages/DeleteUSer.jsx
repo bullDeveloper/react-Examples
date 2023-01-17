@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar'
-import '../styleSheets/Delete-User.css'
+import Sidebar from '../components/common/Sidebar'
+import './Delete-User.css'
 
 export const DeleteUSer = () => {
   return (

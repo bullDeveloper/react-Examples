@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar'
-import '../styleSheets/Add-User.css'
+import Sidebar from '../components/common/Sidebar'
+import './Add-User.css'
 
 const RegisterUser = () => {
   return (
