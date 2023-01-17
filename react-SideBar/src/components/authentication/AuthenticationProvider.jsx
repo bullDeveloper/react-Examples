@@ -6,7 +6,7 @@ export function useAuthenticationContext(){
     return useContext(AuthenticationContext);
 }
 
-export function AuthenticationProvider(props){
+export function AuthenticationProvider({Children}){
     const [isAuthtenticated, setAuthtenticated] = useState(false);
 
     const loginHandler = () =>{
