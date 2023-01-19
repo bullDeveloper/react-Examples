@@ -7,6 +7,7 @@ import { SidebarData } from './SidebarData';
 import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
 import { useAuthenticationContext } from '../authentication/AuthenticationProvider';
+import './Sidebar.css';
 
 
 
@@ -40,20 +41,8 @@ const SidebarNav= styled.nav`
   z-index: 10;
 `;
 
-const SidebarWrap = styled.div`
-  width: 100%;
-`;
-
-const UserDetails = styled.div`
-  color: white;
-  position: fixed;
-  right: 25px;
-  font-size: medium;
-  font-weight: bold;
-`;
-
 const Sidebar = () => {
-  const { user} = useAuthenticationContext();
+  const { user, userImage} = useAuthenticationContext();
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -65,19 +54,19 @@ const Sidebar = () => {
           <NavIcon to='#'>
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-          <UserDetails> 
-            <FaIcons.FaUser />&nbsp;{ user } 
-          </UserDetails>
+          <div className='user-details'> 
+            <img className='user-image' src={userImage} alt="userImage"/>&nbsp;{ user } 
+          </div>
         </Nav>
         <SidebarNav sidebar={sidebar}>
-          <SidebarWrap>
+          <div className='nav-sidebarwrap'>
             <NavIcon to='#'>
               <AiIcons.AiOutlineClose onClick={showSidebar} />
             </NavIcon>
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}
-          </SidebarWrap>
+          </div>
         </SidebarNav>
       </IconContext.Provider>
     </>

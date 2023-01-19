@@ -5,27 +5,53 @@ import "./Login.css";
 import { useNavigate } from 'react-router-dom';
 import { useAuthenticationContext } from "../components/authentication/AuthenticationProvider";
 
+
 export default function Login() {
 
-  const emailValidos = ['jlabat@iuvity.net', 'geovana@iuvity.net'];
-  const passwordValido = ['@Todo12345'];
-  const [email, setEmail] = useState("");
+  //const emailValidos = ['jlabat@iuvity.net', 'geovana@iuvity.net'];
+  //const passwordValido = ['@Todo12345'];
+  // valid username & password
+  //username: 'kminchelle',
+  //password: '0lelplR',
+
+  const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const {authenticationHandler} = useAuthenticationContext();
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return user.length > 0 && password.length > 0;
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    console.log('Conect to service Login, email:' + email + ' | pass:' + password);
-    if (emailValidos.includes(email) && passwordValido.includes(password)) {
-      console.log('Bingo');
-      authenticationHandler({authtenticated:true,user:email});
-      navigate('/success');
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: user,
+        password: password
+      })
+    };
+
+    try{
+      console.log('Conect to service Login, user:' + user + ' | pass:' + password);
+      const response = await fetch('https://dummyjson.com/auth/login', requestOptions);
+      const data = await response.json();
+      if(data.token){
+        console.log("user:" + data.firstName +" "+ data.lastName);
+        console.log("token:" + data.token);
+        authenticationHandler({authtenticated:true,user:data.firstName +" "+ data.lastName, userImage: data.image});
+        navigate('/success');
+      }else{
+        console.log('ERROR');
+      }
+
+    } catch(error){
+      console.log(error);
     }
+
   }
 
   return (
@@ -35,13 +61,13 @@ export default function Login() {
         <h1 className="title">BIENVENIDO</h1>
         <Form onSubmit={handleSubmit} className='login-form'>
           <Form.Group className='input-container' size="lg" controlId="email">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Usuario</Form.Label>
             <Form.Control
               className='input-form'
               autoFocus
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
             />
           </Form.Group>
 
@@ -56,8 +82,8 @@ export default function Login() {
           </Form.Group>
 
           <div className="button-container">
-            <Button className='input-form-submit' size="lg" type="submit" disabled={!validateForm()}>
-              Login
+            <Button size="lg" type="submit" disabled={!validateForm()}>
+              Ingresar
             </Button>
           </div>
         </Form>

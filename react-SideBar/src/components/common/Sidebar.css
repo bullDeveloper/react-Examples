@@ -1,0 +1,11 @@
+.user-image {
+    width: 45px;
+}
+
+.user-details{
+    color: white;
+    position: absolute;
+    right: 25px;
+    font-size: medium;
+    font-weight: bold;
+}

@@ -9,14 +9,16 @@ export function useAuthenticationContext(){
 export function AuthenticationProvider({children}){
     const [isAuthtenticated, setAuthtenticated] = useState(false);
     const [user, setUser] = useState(null);
+    const [userImage, setUserImage] = useState(null);
 
-    const authenticationHandler = ({authtenticated, user}) =>{
+    const authenticationHandler = ({authtenticated, user, userImage}) =>{
         setAuthtenticated(authtenticated);
         setUser(user);
+        setUserImage(userImage)
     }
 
     return (
-        <AuthenticationContext.Provider value={{isAuthtenticated, user, authenticationHandler}} >
+        <AuthenticationContext.Provider value={{isAuthtenticated, user, userImage, authenticationHandler}} >
             {children}
         </AuthenticationContext.Provider>
     );

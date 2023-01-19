@@ -10,6 +10,7 @@ import DeleteUSer from './pages/DeleteUSer';
 import AboutUs from './pages/AboutUs';
 import Logout from './pages/Logout';
 import PrivateRoute from './components/authentication/PrivateRoute';
+import { AddUserSucess } from './pages/AddUserSucess';
 function App() {
 
 
@@ -25,7 +26,8 @@ function App() {
             <Route path='/alter-uSer' exac element={ <AlterUser /> } />
             <Route path='/delete-user' exac element={ <DeleteUSer /> } />
             <Route path='/about-us' exac element={ <AboutUs /> } />
-            <Route path='/logout' exac element= {<Logout /> } />
+            <Route path='/logout' exac element= { <Logout /> } />
+            <Route path='/add-user-success' exac element={ <AddUserSucess /> } />
           </Route>
         </Routes>
     </BrowserRouter>
