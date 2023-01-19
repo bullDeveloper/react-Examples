@@ -12,7 +12,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const {loginHandler} = useAuthenticationContext();
+  const {authenticationHandler} = useAuthenticationContext();
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -23,7 +23,7 @@ export default function Login() {
     console.log('Conect to service Login, email:' + email + ' | pass:' + password);
     if (emailValidos.includes(email) && passwordValido.includes(password)) {
       console.log('Bingo');
-      loginHandler();
+      authenticationHandler({authtenticated:true,user:email});
       navigate('/success');
     }
   }

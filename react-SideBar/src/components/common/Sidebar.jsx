@@ -6,6 +6,9 @@ import * as AiIcons from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
+import { useAuthenticationContext } from '../authentication/AuthenticationProvider';
+
+
 
 const Nav = styled.div`
   background: #15171c;
@@ -41,7 +44,16 @@ const SidebarWrap = styled.div`
   width: 100%;
 `;
 
+const UserDetails = styled.div`
+  color: white;
+  position: fixed;
+  right: 25px;
+  font-size: medium;
+  font-weight: bold;
+`;
+
 const Sidebar = () => {
+  const { user} = useAuthenticationContext();
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -53,6 +65,9 @@ const Sidebar = () => {
           <NavIcon to='#'>
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
+          <UserDetails> 
+            <FaIcons.FaUser />&nbsp;{ user } 
+          </UserDetails>
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>

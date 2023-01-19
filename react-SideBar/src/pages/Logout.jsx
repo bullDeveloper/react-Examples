@@ -1,16 +1,16 @@
 import React from 'react';
 import Sidebar from '../components/common/Sidebar'
 import Button from "react-bootstrap/Button";
-import { useNavigate ,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuthenticationContext } from "../components/authentication/AuthenticationProvider";
 import './Logout.css'
 
 const Logout = () => {
   const navigate = useNavigate();
-  const {logoutHandler} = useAuthenticationContext();
+  const { authenticationHandler } = useAuthenticationContext();
 
   const onClickHandler = () => {
-    logoutHandler();
+    authenticationHandler({authtenticated:false,user:null});
     navigate('/success');
   }
 
