@@ -29,7 +29,7 @@ export const AddUserSucess = () => {
         <div className='table-center'>
           <div><b>Cedula de Identidad: </b>{ci}</div>
           <div><b>Nombre: </b>{name}</div>
-          <div><b>Apellidos: {lastName}</b></div>
+          <div><b>Apellidos:</b> {lastName}</div>
           <div><b>Direccion: </b>{adress}</div>
           <div><b>Cargo:</b> {position}</div>
         </div>

@@ -1,94 +1,75 @@
 import React, { useState } from "react";
+import Select from 'react-select'
 import { useNavigate } from 'react-router-dom';
+import { inputs } from "./AddUserData";
 import Sidebar from '../components/common/Sidebar'
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import FormInput from "../components/common/FormInput";
 import './Add-User.css'
-
 
 const RegisterUser = () => {
 
-  const [ci, setCi] = useState("");
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [adress, setAdress] = useState("");
-  const [position, setPosition] = useState("");
+  const options = [
+    { value: 'Ingeniero', label: 'Ingeniero' },
+    { value: 'Tester', label: 'Tester' },
+    { value: 'Lider', label: 'Lider' }
+  ]
 
   const navigate = useNavigate();
+  const [btnDisabled, setBtnDisabled] = useState('disabled');
+  const [values, setValues] = useState({
+    ci: "",
+    name: "",
+    lastName: "",
+    adress: ""
+  });
+  const [valueSelect, setSelectValue] = useState({
+    position: ""
+  });
 
-  function enabledButtom() {
-    return ci.length > 0 && name.length > 0 && lastName.length > 0 && adress.length > 0 && position.length > 0;
+  const handleChangeSelected = (e) => {
+    setSelectValue({ position: e.value });
+    setBtnDisabled(values.ci.length > 0 && values.name.length > 0 && values.lastName.length > 0 && values.adress.length > 0 && valueSelect.position.length > 0 ? '' : 'disabled');
   }
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+    setBtnDisabled(values.ci.length > 0 && values.name.length > 0 && values.lastName.length > 0 && values.adress.length > 0 && valueSelect.position.length > 0 ? '' : 'disabled');
+  };
+
+  const onPaste = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+    setBtnDisabled(values.ci.length > 0 && values.name.length > 0 && values.lastName.length > 0 && values.adress.length > 0 && valueSelect.position.length > 0 ? '' : 'disabled');
+  };
 
   async function handleSubmit(event) {
     event.preventDefault();
-    navigate("/add-user-success",{state:{ci:ci, name:name, lastName:lastName, adress:adress, position:position}});
+    navigate("/add-user-success", { state: { ci: values.ci, name: values.name, lastName: values.lastName, adress: values.adress, position: valueSelect.position } });
     console.log("Y se marcho!")
   }
 
   return (
     <>
       <Sidebar />
-      <div className='add-user'>
-        <h1>Alta Usuario</h1>
-        <Form onSubmit={handleSubmit} className='add-user-form'>
-            <Form.Group className='input-container' size="lg" controlId="email">
-              <Form.Label>Cedula de Identidad</Form.Label>
-              <Form.Control
-                className='input-form'
-                autoFocus
-                type="text"
-                value={ci}
-                onChange={(e) => setCi(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className='input-container' size="lg" controlId="email">
-              <Form.Label>Nombre</Form.Label>
-              <Form.Control
-                className='input-form'
-                autoFocus
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className='input-container' size="lg" controlId="email">
-              <Form.Label>Apellidos</Form.Label>
-              <Form.Control
-                className='input-form'
-                autoFocus
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className='input-container' size="lg" controlId="email">
-              <Form.Label>Direccion</Form.Label>
-              <Form.Control
-                className='input-form'
-                autoFocus
-                type="text"
-                value={adress}
-                onChange={(e) => setAdress(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className='input-container' size="lg" controlId="email">
-              <Form.Label>Cargo</Form.Label>
-              <Form.Control
-                className='input-form'
-                autoFocus
-                type="text"
-                value={position}
-                onChange={(e) => setPosition(e.target.value)}
-              />
-            </Form.Group>
-
-            <div className="button-container">
-              <Button size="lg" type="submit" disabled={!enabledButtom()}>
-                Agregar Usuario
-              </Button>
-            </div>
-          </Form>
+      <div className="main-container-add-user">
+        <form onSubmit={handleSubmit}>
+          <h1>Registro de Usuario</h1>
+          {inputs.map((input) => (
+            <FormInput
+              key={input.id}
+              {...input}
+              value={values[input.name]}
+              onChange={onChange}
+              onPaste={onPaste}
+            />
+          ))}
+          <div className="form-input-container">
+            <label className="form-input-label">Cargo</label>
+            <Select className="form-input" options={options} onChange={(choice) => handleChangeSelected(choice)} />
+          </div>
+          <button disabled={btnDisabled}>
+            Agregar Usuario
+          </button>
+        </form>
       </div>
     </>
   );

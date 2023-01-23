@@ -41,6 +41,11 @@ const SidebarNav= styled.nav`
   z-index: 10;
 `;
 
+const SidebarWrap = styled.div`
+  width: 100%;
+`;
+
+
 const Sidebar = () => {
   const { user, userImage} = useAuthenticationContext();
   const [sidebar, setSidebar] = useState(false);
@@ -59,14 +64,14 @@ const Sidebar = () => {
           </div>
         </Nav>
         <SidebarNav sidebar={sidebar}>
-          <div className='nav-sidebarwrap'>
+          <SidebarWrap>
             <NavIcon to='#'>
               <AiIcons.AiOutlineClose onClick={showSidebar} />
             </NavIcon>
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}
-          </div>
+          </SidebarWrap>
         </SidebarNav>
       </IconContext.Provider>
     </>
